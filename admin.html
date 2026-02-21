@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - AI Tools Hub</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #0a0a0f; --bg2: #12121a; --bg3: #1a1a2e;
+            --text: #f0f0f5; --text2: #a0a0b8; --accent: #7c3aed;
+            --border: #2a2a40; --green: #22c55e; --red: #ef4444;
+            --font: 'Inter', -apple-system, sans-serif;
+        }
+        body { font-family: var(--font); background: var(--bg); color: var(--text); padding: 20px; max-width: 1200px; margin: 0 auto; }
+        h1 { margin-bottom: 6px; font-size: 1.8rem; }
+        .subtitle { color: var(--text2); margin-bottom: 30px; }
+        
+        /* Login */
+        .login-section { max-width: 400px; margin: 100px auto; text-align: center; }
+        .login-section h2 { margin-bottom: 20px; }
+        
+        input, textarea, select {
+            width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border);
+            background: var(--bg2); color: var(--text); font-family: var(--font); font-size: 0.95rem;
+            margin-bottom: 12px; transition: border-color 0.2s;
+        }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: var(--accent); }
+        textarea { min-height: 80px; resize: vertical; }
+        label { display: block; margin-bottom: 4px; font-size: 0.85rem; color: var(--text2); font-weight: 600; }
+        
+        .btn {
+            padding: 12px 24px; border-radius: 10px; border: none; font-family: var(--font);
+            font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+        }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-primary:hover { background: #6d28d9; }
+        .btn-danger { background: var(--red); color: white; font-size: 0.8rem; padding: 8px 14px; }
+        .btn-danger:hover { background: #dc2626; }
+        .btn-edit { background: #2563eb; color: white; font-size: 0.8rem; padding: 8px 14px; }
+        .btn-edit:hover { background: #1d4ed8; }
+        .btn-small { font-size: 0.8rem; padding: 8px 14px; }
+        
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+        .form-full { grid-column: 1 / -1; }
+        .form-section {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: 14px;
+            padding: 28px; margin-bottom: 24px;
+        }
+        .form-section h2 { margin-bottom: 20px; font-size: 1.2rem; }
+        
+        .tools-list { margin-top: 20px; }
+        .tool-row {
+            display: flex; align-items: center; gap: 12px; padding: 14px 18px;
+            background: var(--bg3); border: 1px solid var(--border); border-radius: 10px;
+            margin-bottom: 8px; flex-wrap: wrap;
+        }
+        .tool-row .tool-name { font-weight: 600; min-width: 150px; }
+        .tool-row .tool-cat { color: var(--accent); font-size: 0.85rem; min-width: 120px; }
+        .tool-row .tool-link { color: var(--text2); font-size: 0.8rem; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .tool-row .actions { display: flex; gap: 8px; margin-left: auto; }
+        
+        .status { padding: 12px 20px; border-radius: 10px; margin-bottom: 16px; display: none; font-weight: 600; }
+        .status.success { display: block; background: rgba(34,197,94,0.15); color: var(--green); border: 1px solid rgba(34,197,94,0.3); }
+        .status.error { display: block; background: rgba(239,68,68,0.15); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+        
+        .checkbox-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+        .checkbox-row input { width: auto; margin: 0; }
+        
+        @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } .tool-row { flex-direction: column; align-items: flex-start; } }
+    </style>
+</head>
+<body>
+
+    <!-- LOGIN -->
+    <div id="loginSection" class="login-section">
+        <h2>🔐 Admin Login</h2>
+        <p style="color: var(--text2); margin-bottom: 20px;">Enter your admin key to manage tools</p>
+        <input type="password" id="adminKeyInput" placeholder="Enter Admin Key">
+        <button class="btn btn-primary" onclick="login()" style="width:100%">Login</button>
+    </div>
+
+    <!-- ADMIN PANEL (hidden until login) -->
+    <div id="adminPanel" style="display:none;">
+        <h1>🛠 AI Tools Hub — Admin</h1>
+        <p class="subtitle">Add, edit, and manage your referral tools. Changes appear on the live site immediately.</p>
+
+        <div id="statusMsg" class="status"></div>
+
+        <!-- ADD / EDIT TOOL FORM -->
+        <div class="form-section">
+            <h2 id="formTitle">➕ Add New Tool</h2>
+            <input type="hidden" id="editId">
+            <div class="form-grid">
+                <div>
+                    <label>Tool Name *</label>
+                    <input type="text" id="f_name" placeholder="e.g. ChatGPT Plus">
+                </div>
+                <div>
+                    <label>Category *</label>
+                    <input type="text" id="f_category" placeholder="e.g. AI Assistants" list="categories">
+                    <datalist id="categories">
+                        <option value="AI Assistants">
+                        <option value="AI Writing">
+                        <option value="AI Coding">
+                        <option value="AI Image Generation">
+                        <option value="AI Video">
+                        <option value="AI Audio">
+                        <option value="AI Audio & Video">
+                        <option value="AI Design">
+                        <option value="AI Productivity">
+                        <option value="AI Search">
+                        <option value="AI Automation">
+                        <option value="AI Analytics">
+                        <option value="AI Learning">
+                        <option value="Hosting & Deployment">
+                        <option value="Backend & Database">
+                        <option value="Security & Performance">
+                        <option value="Domains & Hosting">
+                    </datalist>
+                </div>
+                <div class="form-full">
+                    <label>Short Description (shown on card) *</label>
+                    <input type="text" id="f_short_description" placeholder="One-line description for the card" maxlength="300">
+                </div>
+                <div class="form-full">
+                    <label>Full Description *</label>
+                    <textarea id="f_description" placeholder="Detailed description of the tool"></textarea>
+                </div>
+                <div>
+                    <label>Referral Link *</label>
+                    <input type="url" id="f_referral_link" placeholder="https://tool.com/?ref=YOURID">
+                </div>
+                <div>
+                    <label>Official Link</label>
+                    <input type="url" id="f_official_link" placeholder="https://tool.com">
+                </div>
+                <div>
+                    <label>Icon Emoji</label>
+                    <input type="text" id="f_icon_emoji" placeholder="🤖" maxlength="10">
+                </div>
+                <div>
+                    <label>Pricing</label>
+                    <input type="text" id="f_pricing" placeholder="Free / From $20/mo">
+                </div>
+                <div>
+                    <label>Sort Order (lower = first)</label>
+                    <input type="number" id="f_sort_order" placeholder="0" value="0">
+                </div>
+                <div style="display:flex; gap: 20px; align-items: flex-end; padding-bottom: 12px;">
+                    <div class="checkbox-row">
+                        <input type="checkbox" id="f_is_featured">
+                        <label for="f_is_featured" style="margin:0">Featured?</label>
+                    </div>
+                    <div class="checkbox-row">
+                        <input type="checkbox" id="f_is_active" checked>
+                        <label for="f_is_active" style="margin:0">Active?</label>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-primary" onclick="saveTool()">💾 Save Tool</button>
+                <button class="btn btn-small" onclick="resetForm()" style="background: var(--border); color: var(--text);">Cancel / Reset</button>
+            </div>
+        </div>
+
+        <!-- EXISTING TOOLS LIST -->
+        <div class="form-section">
+            <h2>📋 All Tools (<span id="toolCount">0</span>)</h2>
+            <input type="text" id="adminSearch" placeholder="Search tools..." oninput="filterAdminTools()">
+            <div id="toolsList" class="tools-list"></div>
+        </div>
+    </div>
+
+    <script>
+        let adminKey = '';
+        let adminTools = [];
+
+        function login() {
+            adminKey = document.getElementById('adminKeyInput').value;
+            if (!adminKey) return;
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+            loadTools();
+        }
+
+        // Press Enter to login
+        document.getElementById('adminKeyInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') login();
+        });
+
+        function showStatus(msg, type) {
+            const el = document.getElementById('statusMsg');
+            el.textContent = msg;
+            el.className = `status ${type}`;
+            setTimeout(() => { el.className = 'status'; }, 4000);
+        }
+
+        async function loadTools() {
+            try {
+                const res = await fetch('/.netlify/functions/get-tools');
+                adminTools = await res.json();
+                document.getElementById('toolCount').textContent = adminTools.length;
+                renderAdminTools(adminTools);
+            } catch (e) {
+                showStatus('Failed to load tools: ' + e.message, 'error');
+            }
+        }
+
+        function renderAdminTools(tools) {
+            const list = document.getElementById('toolsList');
+            list.innerHTML = tools.map(t => `
+                <div class="tool-row">
+                    <span style="font-size:1.3rem">${t.icon_emoji || '🔧'}</span>
+                    <span class="tool-name">${t.name} ${t.is_featured ? '⭐' : ''} ${!t.is_active ? '🚫' : ''}</span>
+                    <span class="tool-cat">${t.category}</span>
+                    <span class="tool-link">${t.referral_link}</span>
+                    <div class="actions">
+                        <button class="btn btn-edit" onclick='editTool(${JSON.stringify(t).replace(/'/g, "&#39;")})'>Edit</button>
+                        <button class="btn btn-danger" onclick="deleteTool(${t.id}, '${t.name.replace(/'/g, "\\'")}')">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterAdminTools() {
+            const q = document.getElementById('adminSearch').value.toLowerCase();
+            const filtered = adminTools.filter(t => 
+                t.name.toLowerCase().includes(q) || t.category.toLowerCase().includes(q)
+            );
+            renderAdminTools(filtered);
+        }
+
+        async function saveTool() {
+            const editId = document.getElementById('editId').value;
+            const tool = {
+                name: document.getElementById('f_name').value,
+                category: document.getElementById('f_category').value,
+                description: document.getElementById('f_description').value,
+                short_description: document.getElementById('f_short_description').value,
+                referral_link: document.getElementById('f_referral_link').value,
+                official_link: document.getElementById('f_official_link').value,
+                icon_emoji: document.getElementById('f_icon_emoji').value || '🔧',
+                pricing: document.getElementById('f_pricing').value || 'Freemium',
+                sort_order: parseInt(document.getElementById('f_sort_order').value) || 0,
+                is_featured: document.getElementById('f_is_featured').checked,
+                is_active: document.getElementById('f_is_active').checked,
+            };
+
+            if (!tool.name || !tool.category || !tool.description || !tool.short_description || !tool.referral_link) {
+                showStatus('Please fill in all required fields (*)', 'error');
+                return;
+            }
+
+            try {
+                let res;
+                if (editId) {
+                    tool.id = parseInt(editId);
+                    res = await fetch('/.netlify/functions/update-tool', {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json', 'x-admin-key': adminKey },
+                        body: JSON.stringify(tool),
+                    });
+                } else {
+                    res = await fetch('/.netlify/functions/add-tool', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'x-admin-key': adminKey },
+                        body: JSON.stringify(tool),
+                    });
+                }
+
+                if (res.status === 401) {
+                    showStatus('Invalid admin key! Check your ADMIN_KEY.', 'error');
+                    return;
+                }
+
+                if (!res.ok) throw new Error(await res.text());
+
+                showStatus(editId ? '✅ Tool updated successfully!' : '✅ Tool added successfully!', 'success');
+                resetForm();
+                loadTools();
+            } catch (e) {
+                showStatus('Error saving tool: ' + e.message, 'error');
+            }
+        }
+
+        function editTool(tool) {
+            document.getElementById('editId').value = tool.id;
+            document.getElementById('f_name').value = tool.name;
+            document.getElementById('f_category').value = tool.category;
+            document.getElementById('f_description').value = tool.description;
+            document.getElementById('f_short_description').value = tool.short_description;
+            document.getElementById('f_referral_link').value = tool.referral_link;
+            document.getElementById('f_official_link').value = tool.official_link || '';
+            document.getElementById('f_icon_emoji').value = tool.icon_emoji || '';
+            document.getElementById('f_pricing').value = tool.pricing || '';
+            document.getElementById('f_sort_order').value = tool.sort_order || 0;
+            document.getElementById('f_is_featured').checked = tool.is_featured;
+            document.getElementById('f_is_active').checked = tool.is_active;
+            document.getElementById('formTitle').textContent = '✏️ Edit Tool: ' + tool.name;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        async function deleteTool(id, name) {
+            if (!confirm(`Are you sure you want to delete "${name}"?`)) return;
+            try {
+                const res = await fetch('/.netlify/functions/delete-tool', {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json', 'x-admin-key': adminKey },
+                    body: JSON.stringify({ id }),
+                });
+                if (res.status === 401) { showStatus('Invalid admin key!', 'error'); return; }
+                if (!res.ok) throw new Error(await res.text());
+                showStatus(`✅ "${name}" deleted.`, 'success');
+                loadTools();
+            } catch (e) {
+                showStatus('Error deleting: ' + e.message, 'error');
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('editId').value = '';
+            document.getElementById('f_name').value = '';
+            document.getElementById('f_category').value = '';
+            document.getElementById('f_description').value = '';
+            document.getElementById('f_short_description').value = '';
+            document.getElementById('f_referral_link').value = '';
+            document.getElementById('f_official_link').value = '';
+            document.getElementById('f_icon_emoji').value = '';
+            document.getElementById('f_pricing').value = '';
+            document.getElementById('f_sort_order').value = '0';
+            document.getElementById('f_is_featured').checked = false;
+            document.getElementById('f_is_active').checked = true;
+            document.getElementById('formTitle').textContent = '➕ Add New Tool';
+        }
+    </script>
+</body>
+</html>

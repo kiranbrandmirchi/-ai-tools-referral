@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- PRIMARY SEO TAGS -->
+    <title>Best AI Tools 2026 — Top AI, Coding, Design & Productivity Tools Directory</title>
+    <meta name="description" content="Discover the best AI tools for 2026. Curated directory of top AI assistants, coding tools, image generators, automation platforms, hosting services & developer resources. Find the perfect tool for your needs.">
+    <meta name="keywords" content="best ai tools, ai tools directory, chatgpt, claude ai, midjourney, github copilot, cursor ai, ai coding tools, ai writing tools, ai image generator, developer tools, ai productivity, ai automation, bolt.new, v0 vercel, perplexity ai">
+    <meta name="author" content="AI Tools Hub">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://YOURSITENAME.netlify.app/">
+
+    <!-- OPEN GRAPH / FACEBOOK -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://YOURSITENAME.netlify.app/">
+    <meta property="og:title" content="Best AI Tools 2026 — Top AI, Coding, Design & Productivity Tools">
+    <meta property="og:description" content="Curated directory of 30+ best AI tools for coding, writing, design, automation & productivity. Find your perfect AI tool.">
+    <meta property="og:image" content="https://YOURSITENAME.netlify.app/og-image.png">
+    <meta property="og:site_name" content="AI Tools Hub">
+    <meta property="og:locale" content="en_US">
+
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://YOURSITENAME.netlify.app/">
+    <meta name="twitter:title" content="Best AI Tools 2026 — Top AI, Coding, Design & Productivity Tools">
+    <meta name="twitter:description" content="Curated directory of 30+ best AI tools for coding, writing, design, automation & productivity.">
+    <meta name="twitter:image" content="https://YOURSITENAME.netlify.app/og-image.png">
+
+    <!-- STRUCTURED DATA / JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "AI Tools Hub",
+      "url": "https://YOURSITENAME.netlify.app/",
+      "description": "Curated directory of the best AI tools for developers, creators, and businesses",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://YOURSITENAME.netlify.app/?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Best AI Tools 2026",
+      "description": "A curated list of the best AI and developer tools",
+      "numberOfItems": 30,
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "ChatGPT Plus", "url": "https://chat.openai.com"},
+        {"@type": "ListItem", "position": 2, "name": "Claude Pro", "url": "https://claude.ai"},
+        {"@type": "ListItem", "position": 3, "name": "GitHub Copilot", "url": "https://github.com/features/copilot"},
+        {"@type": "ListItem", "position": 4, "name": "Midjourney", "url": "https://midjourney.com"},
+        {"@type": "ListItem", "position": 5, "name": "Cursor", "url": "https://cursor.sh"}
+      ]
+    }
+    </script>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+
+    <style>
+        /* ===== CSS RESET & VARIABLES ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a2e;
+            --bg-card-hover: #222240;
+            --text-primary: #f0f0f5;
+            --text-secondary: #a0a0b8;
+            --text-muted: #6a6a82;
+            --accent: #7c3aed;
+            --accent-light: #a78bfa;
+            --accent-glow: rgba(124, 58, 237, 0.3);
+            --gradient-1: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+            --gradient-2: linear-gradient(135deg, #ec4899 0%, #7c3aed 100%);
+            --border: #2a2a40;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --shadow: 0 4px 24px rgba(0,0,0,0.3);
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        /* ===== BASE ===== */
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--accent-light); text-decoration: none; transition: color 0.2s; }
+        a:hover { color: #c4b5fd; }
+
+        /* ===== HEADER / HERO ===== */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 50px;
+            background: radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.15) 0%, transparent 60%);
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto 30px;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .hero-stats .stat {
+            text-align: center;
+        }
+        .hero-stats .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-stats .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* ===== CONTROLS ===== */
+        .controls {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            justify-content: center;
+        }
+        .search-box {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+            min-width: 250px;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 14px 20px 14px 48px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: var(--font);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+        .search-box input::placeholder { color: var(--text-muted); }
+        .search-box .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+        .filter-btn {
+            padding: 12px 22px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .filter-btn:hover { border-color: var(--accent); color: var(--text-primary); }
+        .filter-btn.active {
+            background: var(--gradient-1);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* ===== GRID ===== */
+        .tools-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 20px;
+        }
+
+        /* ===== TOOL CARD ===== */
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tool-card:hover {
+            border-color: rgba(124,58,237,0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(124,58,237,0.15);
+        }
+        .tool-card:hover::before { opacity: 1; }
+        .tool-card.featured {
+            border-color: rgba(124,58,237,0.3);
+            background: linear-gradient(135deg, rgba(124,58,237,0.08), var(--bg-card));
+        }
+        .tool-card.featured::before { opacity: 1; }
+        
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+        .card-emoji {
+            font-size: 2.2rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        .card-info { flex: 1; }
+        .card-info h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+            color: var(--text-primary);
+        }
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .card-category {
+            font-size: 0.78rem;
+            color: var(--accent-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .card-pricing {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.05);
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+        .featured-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #fbbf24;
+            background: rgba(251,191,36,0.12);
+            padding: 3px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.05em;
+        }
+        .card-desc {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            margin-bottom: 18px;
+            flex: 1;
+            line-height: 1.65;
+        }
+        .card-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .btn-referral {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            background: var(--gradient-1);
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font);
+        }
+        .btn-referral:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px var(--accent-glow);
+            color: white;
+        }
+        .btn-official {
+            padding: 12px 18px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-official:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        /* ===== LOADING ===== */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+        .loading .spinner {
+            width: 40px; height: 40px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+            grid-column: 1 / -1;
+        }
+
+        /* ===== INFO SECTION (SEO Content) ===== */
+        .info-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px 40px;
+            border-top: 1px solid var(--border);
+        }
+        .info-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .info-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 30px 0 10px;
+            color: var(--text-primary);
+        }
+        .info-section p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* ===== FAQ (SEO) ===== */
+        .faq { max-width: 900px; margin: 0 auto; padding: 20px 20px 60px; }
+        .faq h2 {
+            font-size: 1.8rem; font-weight: 700; margin-bottom: 24px; text-align: center;
+            color: var(--text-primary);
+        }
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .faq-q {
+            padding: 18px 24px;
+            background: var(--bg-secondary);
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+        .faq-q:hover { background: var(--bg-card); }
+        .faq-q::after { content: '+'; font-size: 1.3rem; color: var(--accent-light); transition: transform 0.2s; }
+        .faq-item.open .faq-q::after { content: '−'; }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 24px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .faq-item.open .faq-a {
+            max-height: 500px;
+            padding: 18px 24px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        footer p { margin-bottom: 8px; }
+        footer a { color: var(--accent-light); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            .tools-grid { grid-template-columns: 1fr; }
+            .hero { padding: 50px 16px 30px; }
+            .hero-stats { gap: 24px; }
+            .tool-card { padding: 20px; }
+            .card-actions { flex-direction: column; }
+        }
+        @media (max-width: 840px) {
+            .tools-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+        }
+        
+        /* ===== SCROLL TO TOP ===== */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .scroll-top.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <header class="hero" role="banner">
+        <h1>Best AI & Developer Tools 2026</h1>
+        <p>A curated directory of the most powerful AI tools, coding assistants, hosting platforms, and productivity software to supercharge your workflow in the AI era.</p>
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-number" id="tool-count">30+</div>
+                <div class="stat-label">Curated Tools</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">2026</div>
+                <div class="stat-label">Updated</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SEARCH & FILTERS -->
+    <nav class="controls" role="search" aria-label="Filter tools">
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="search" id="searchInput" placeholder="Search tools..." aria-label="Search AI tools">
+        </div>
+        <button class="filter-btn active" data-category="all">All Tools</button>
+        <button class="filter-btn" data-category="AI Assistants">AI Assistants</button>
+        <button class="filter-btn" data-category="AI Coding">AI Coding</button>
+        <button class="filter-btn" data-category="AI Writing">AI Writing</button>
+        <button class="filter-btn" data-category="AI Image Generation">AI Image</button>
+        <button class="filter-btn" data-category="AI Video">AI Video</button>
+        <button class="filter-btn" data-category="AI Productivity">Productivity</button>
+        <button class="filter-btn" data-category="AI Automation">Automation</button>
+        <button class="filter-btn" data-category="Hosting & Deployment">Hosting</button>
+        <button class="filter-btn" data-category="Backend & Database">Database</button>
+        <button class="filter-btn" data-category="AI Design">Design</button>
+        <button class="filter-btn" data-category="AI Audio">Audio</button>
+    </nav>
+
+    <!-- TOOLS GRID -->
+    <main>
+        <section class="tools-grid" id="toolsGrid" aria-label="AI Tools Directory">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Loading tools...</p>
+            </div>
+        </section>
+
+        <!-- SEO CONTENT SECTION -->
+        <section class="info-section" aria-label="About AI Tools">
+            <h2>Why Use AI Tools in 2026?</h2>
+            <p>The AI revolution has transformed how we work, create, and build. From AI coding assistants like GitHub Copilot and Cursor that write entire applications, to image generators like Midjourney creating photorealistic art, to AI writing tools producing professional content — the right AI tools can multiply your productivity by 10x or more.</p>
+            
+            <h3>AI Coding Tools — Build Faster Than Ever</h3>
+            <p>Tools like GitHub Copilot, Cursor, Bolt.new, and Replit have fundamentally changed software development. These AI-powered coding assistants can understand your entire codebase, generate complete functions, debug errors, and even build full-stack applications from a simple text description. Whether you're a professional developer or just getting started, AI coding tools accelerate your workflow dramatically.</p>
+
+            <h3>AI Writing & Content Creation</h3>
+            <p>ChatGPT, Claude, Jasper, and Copy.ai have made professional writing accessible to everyone. Generate blog posts, marketing copy, emails, social media content, and technical documentation in minutes. These tools don't replace human creativity — they amplify it, handling the heavy lifting so you can focus on strategy and ideas.</p>
+
+            <h3>AI Image & Video Generation</h3>
+            <p>Midjourney, Leonardo AI, and Runway ML have democratized visual content creation. Generate stunning images, create AI videos, and produce professional visual content without expensive software or design skills. These tools are used by individual creators and Fortune 500 companies alike.</p>
+
+            <h3>Developer Infrastructure & Hosting</h3>
+            <p>Modern hosting platforms like Vercel, Netlify, Railway, and Supabase make deploying applications trivially easy. Combined with databases like Neon and security tools like Cloudflare, you can build and ship production-grade applications faster than ever before. Most offer generous free tiers to get started.</p>
+
+            <h3>AI Productivity & Automation</h3>
+            <p>Notion AI, Perplexity, Zapier, and Make are transforming how teams manage work. Automate repetitive tasks, get AI-powered insights from your data, and connect thousands of apps without writing code. The AI productivity revolution means you can accomplish in hours what used to take days.</p>
+        </section>
+
+        <!-- FAQ SECTION (SEO - FAQ Schema) -->
+        <section class="faq" aria-label="Frequently Asked Questions">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What are the best AI tools in 2026?</div>
+                <div class="faq-a">The best AI tools in 2026 include ChatGPT and Claude for AI assistance, GitHub Copilot and Cursor for coding, Midjourney for image generation, Notion AI for productivity, and Zapier for automation. The best tool depends on your specific needs — this directory helps you find the right one.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Are these AI tools free to use?</div>
+                <div class="faq-a">Most tools on this list offer free tiers or free trials. ChatGPT, Claude, Canva, Notion, Supabase, and many others have generous free plans. Premium features typically range from $10-25/month. We've listed the pricing for each tool so you can find options that fit your budget.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Which AI coding tool is best for beginners?</div>
+                <div class="faq-a">For beginners, Bolt.new and Replit are excellent choices as they work entirely in the browser with no setup required. You can describe what you want to build in plain English and these tools generate working code. For more experienced developers, Cursor and GitHub Copilot offer deeper integration with professional workflows.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How do I choose the right AI tool for my needs?</div>
+                <div class="faq-a">Start by identifying your primary use case: writing, coding, design, automation, or data analysis. Then consider your budget, team size, and technical skill level. We recommend trying free tiers of 2-3 tools in your category before committing to a paid plan. Our category filters above make it easy to browse tools by use case.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What is an AI coding assistant and do I need one?</div>
+                <div class="faq-a">An AI coding assistant is a tool that uses AI to help you write, debug, and understand code. Tools like GitHub Copilot and Cursor integrate into your editor and suggest code as you type. If you write any code at all — even as a hobby — an AI coding assistant can save you hours every week and help you learn faster.</div>
+            </div>
+        </section>
+
+        <!-- FAQ STRUCTURED DATA -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What are the best AI tools in 2026?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The best AI tools in 2026 include ChatGPT and Claude for AI assistance, GitHub Copilot and Cursor for coding, Midjourney for image generation, Notion AI for productivity, and Zapier for automation."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are these AI tools free to use?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Most tools offer free tiers or free trials. ChatGPT, Claude, Canva, Notion, Supabase, and many others have generous free plans. Premium features typically range from $10-25/month."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Which AI coding tool is best for beginners?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "For beginners, Bolt.new and Replit are excellent choices as they work entirely in the browser with no setup required."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I choose the right AI tool for my needs?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Start by identifying your primary use case: writing, coding, design, automation, or data analysis. Then consider your budget, team size, and technical skill level."
+              }
+            }
+          ]
+        }
+        </script>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 AI Tools Hub. All rights reserved.</p>
+        <p>This site contains referral links. We may earn a commission at no extra cost to you. We only recommend tools we believe provide genuine value.</p>
+        <p><a href="/admin.html">Admin</a></p>
+    </footer>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+
+    <script>
+        // ===== STATE =====
+        let allTools = [];
+        let currentCategory = 'all';
+        let searchTimeout;
+
+        // ===== FETCH TOOLS =====
+        async function fetchTools(category = 'all', search = '') {
+            const grid = document.getElementById('toolsGrid');
+            grid.innerHTML = '<div class="loading"><div class="spinner"></div><p>Loading tools...</p></div>';
+            
+            try {
+                let url = '/.netlify/functions/get-tools?';
+                if (category !== 'all') url += `category=${encodeURIComponent(category)}&`;
+                if (search) url += `search=${encodeURIComponent(search)}`;
+                
+                const response = await fetch(url);
+                const tools = await response.json();
+                allTools = tools;
+                renderTools(tools);
+                
+                // Update counter
+                document.getElementById('tool-count').textContent = tools.length + '+';
+            } catch (error) {
+                grid.innerHTML = '<div class="loading"><p>Unable to load tools. Please refresh the page.</p></div>';
+                console.error('Error fetching tools:', error);
+            }
+        }
+
+        // ===== RENDER TOOLS =====
+        function renderTools(tools) {
+            const grid = document.getElementById('toolsGrid');
+            
+            if (tools.length === 0) {
+                grid.innerHTML = '<div class="no-results"><p>No tools found. Try a different search or category.</p></div>';
+                return;
+            }
+
+            grid.innerHTML = tools.map(tool => `
+                <article class="tool-card ${tool.is_featured ? 'featured' : ''}" itemscope itemtype="https://schema.org/SoftwareApplication">
+                    <div class="card-header">
+                        <div class="card-emoji" aria-hidden="true">${tool.icon_emoji || '🔧'}</div>
+                        <div class="card-info">
+                            <h3 itemprop="name">${escapeHtml(tool.name)}</h3>
+                            <div class="card-meta">
+                                <span class="card-category">${escapeHtml(tool.category)}</span>
+                                <span class="card-pricing" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                    <span itemprop="price">${escapeHtml(tool.pricing || 'Freemium')}</span>
+                                </span>
+                                ${tool.is_featured ? '<span class="featured-badge">⭐ FEATURED</span>' : ''}
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-desc" itemprop="description">${escapeHtml(tool.short_description)}</p>
+                    <div class="card-actions">
+                        <a href="${escapeHtml(tool.referral_link)}" target="_blank" rel="noopener sponsored" class="btn-referral" itemprop="url" onclick="trackClick('${escapeHtml(tool.name)}')">
+                            Get ${escapeHtml(tool.name)} →
+                        </a>
+                        ${tool.official_link ? `<a href="${escapeHtml(tool.official_link)}" target="_blank" rel="noopener" class="btn-official">Learn More</a>` : ''}
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        // ===== HELPERS =====
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function trackClick(toolName) {
+            // You can add analytics here later (Google Analytics, Plausible, etc.)
+            console.log(`Referral click: ${toolName}`);
+        }
+
+        // ===== EVENT LISTENERS =====
+
+        // Category Filters
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategory = btn.dataset.category;
+                fetchTools(currentCategory, document.getElementById('searchInput').value);
+            });
+        });
+
+        // Search
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                fetchTools(currentCategory, e.target.value);
+            }, 300);
+        });
+
+        // Scroll to top
+        const scrollBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            scrollBtn.classList.toggle('visible', window.scrollY > 500);
+        });
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ===== INIT =====
+        fetchTools();
+    </script>
+</body>
+</html>
