@@ -1,0 +1,9 @@
+{
+  "name": "ai-tools-referral",
+  "version": "1.0.0",
+  "description": "AI Tools Referral Directory",
+  "type": "module",
+  "dependencies": {
+    "@netlify/neon": "^0.1.2"
+  }
+}
