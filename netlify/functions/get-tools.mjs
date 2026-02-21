@@ -5,18 +5,21 @@ export async function handler(event) {
   try {
     const category = event.queryStringParameters?.category;
     const search = event.queryStringParameters?.search;
-    let query = 'SELECT * FROM tools WHERE is_active = true';
-    const params = [];
-    if (category && category !== 'all') {
-      params.push(category);
-      query += ` AND category = $${params.length}`;
+
+    let rows;
+
+    if (category && category !== 'all' && search) {
+      const searchPattern = `%${search.toLowerCase()}%`;
+      rows = await sql`SELECT * FROM tools WHERE is_active = true AND category = ${category} AND (LOWER(name) LIKE ${searchPattern} OR LOWER(description) LIKE ${searchPattern} OR LOWER(category) LIKE ${searchPattern}) ORDER BY is_featured DESC, sort_order ASC, name ASC`;
+    } else if (category && category !== 'all') {
+      rows = await sql`SELECT * FROM tools WHERE is_active = true AND category = ${category} ORDER BY is_featured DESC, sort_order ASC, name ASC`;
+    } else if (search) {
+      const searchPattern = `%${search.toLowerCase()}%`;
+      rows = await sql`SELECT * FROM tools WHERE is_active = true AND (LOWER(name) LIKE ${searchPattern} OR LOWER(description) LIKE ${searchPattern} OR LOWER(category) LIKE ${searchPattern}) ORDER BY is_featured DESC, sort_order ASC, name ASC`;
+    } else {
+      rows = await sql`SELECT * FROM tools WHERE is_active = true ORDER BY is_featured DESC, sort_order ASC, name ASC`;
     }
-    if (search) {
-      params.push(`%${search.toLowerCase()}%`);
-      query += ` AND (LOWER(name) LIKE $${params.length} OR LOWER(description) LIKE $${params.length} OR LOWER(category) LIKE $${params.length})`;
-    }
-    query += ' ORDER BY is_featured DESC, sort_order ASC, name ASC';
-    const rows = await sql(query, params);
+
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Cache-Control': 'public, max-age=300' },
