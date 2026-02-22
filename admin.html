@@ -1,339 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - AI Tools Hub</title>
-    <meta name="robots" content="noindex, nofollow">
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        :root {
-            --bg: #0a0a0f; --bg2: #12121a; --bg3: #1a1a2e;
-            --text: #f0f0f5; --text2: #a0a0b8; --accent: #7c3aed;
-            --border: #2a2a40; --green: #22c55e; --red: #ef4444;
-            --font: 'Inter', -apple-system, sans-serif;
-        }
-        body { font-family: var(--font); background: var(--bg); color: var(--text); padding: 20px; max-width: 1200px; margin: 0 auto; }
-        h1 { margin-bottom: 6px; font-size: 1.8rem; }
-        .subtitle { color: var(--text2); margin-bottom: 30px; }
-        
-        /* Login */
-        .login-section { max-width: 400px; margin: 100px auto; text-align: center; }
-        .login-section h2 { margin-bottom: 20px; }
-        
-        input, textarea, select {
-            width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border);
-            background: var(--bg2); color: var(--text); font-family: var(--font); font-size: 0.95rem;
-            margin-bottom: 12px; transition: border-color 0.2s;
-        }
-        input:focus, textarea:focus, select:focus { outline: none; border-color: var(--accent); }
-        textarea { min-height: 80px; resize: vertical; }
-        label { display: block; margin-bottom: 4px; font-size: 0.85rem; color: var(--text2); font-weight: 600; }
-        
-        .btn {
-            padding: 12px 24px; border-radius: 10px; border: none; font-family: var(--font);
-            font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
-        }
-        .btn-primary { background: var(--accent); color: white; }
-        .btn-primary:hover { background: #6d28d9; }
-        .btn-danger { background: var(--red); color: white; font-size: 0.8rem; padding: 8px 14px; }
-        .btn-danger:hover { background: #dc2626; }
-        .btn-edit { background: #2563eb; color: white; font-size: 0.8rem; padding: 8px 14px; }
-        .btn-edit:hover { background: #1d4ed8; }
-        .btn-small { font-size: 0.8rem; padding: 8px 14px; }
-        
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
-        .form-full { grid-column: 1 / -1; }
-        .form-section {
-            background: var(--bg3); border: 1px solid var(--border); border-radius: 14px;
-            padding: 28px; margin-bottom: 24px;
-        }
-        .form-section h2 { margin-bottom: 20px; font-size: 1.2rem; }
-        
-        .tools-list { margin-top: 20px; }
-        .tool-row {
-            display: flex; align-items: center; gap: 12px; padding: 14px 18px;
-            background: var(--bg3); border: 1px solid var(--border); border-radius: 10px;
-            margin-bottom: 8px; flex-wrap: wrap;
-        }
-        .tool-row .tool-name { font-weight: 600; min-width: 150px; }
-        .tool-row .tool-cat { color: var(--accent); font-size: 0.85rem; min-width: 120px; }
-        .tool-row .tool-link { color: var(--text2); font-size: 0.8rem; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .tool-row .actions { display: flex; gap: 8px; margin-left: auto; }
-        
-        .status { padding: 12px 20px; border-radius: 10px; margin-bottom: 16px; display: none; font-weight: 600; }
-        .status.success { display: block; background: rgba(34,197,94,0.15); color: var(--green); border: 1px solid rgba(34,197,94,0.3); }
-        .status.error { display: block; background: rgba(239,68,68,0.15); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
-        
-        .checkbox-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-        .checkbox-row input { width: auto; margin: 0; }
-        
-        @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } .tool-row { flex-direction: column; align-items: flex-start; } }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — AI Tools Findr</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0a0a0f;color:#e0e0e0;min-height:100vh}
+    .login-wrap{display:flex;align-items:center;justify-content:center;height:100vh}
+    .login-box{background:#111118;padding:32px;border-radius:12px;border:1px solid #1e1e2e;width:340px;text-align:center}
+    .login-box h2{margin-bottom:16px;color:#818cf8}
+    input,textarea,select{width:100%;padding:10px;margin-bottom:12px;border:1px solid #333;border-radius:6px;background:#0a0a0f;color:#e0e0e0;font-size:14px}
+    textarea{min-height:100px;font-family:monospace}
+    button{padding:10px 20px;border:none;border-radius:6px;cursor:pointer;font-size:14px;font-weight:600}
+    .btn-p{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff}
+    .btn-d{background:#dc2626;color:#fff}
+    .btn-s{background:#1e1e2e;color:#e0e0e0;border:1px solid #333}
+    .admin{max-width:960px;margin:0 auto;padding:24px 16px;display:none}
+    .tabs{display:flex;gap:8px;margin-bottom:20px}
+    .tab{padding:10px 20px;border-radius:8px;cursor:pointer;background:#1e1e2e;color:#e0e0e0;border:1px solid #333}
+    .tab.active{background:#312e81;border-color:#818cf8;color:#c7d2fe}
+    .panel{display:none}
+    .panel.active{display:block}
+    .card{background:#111118;border:1px solid #1e1e2e;border-radius:8px;padding:16px;margin-bottom:12px}
+    .card h3{color:#fff;margin-bottom:8px}
+    .card p{color:#888;font-size:13px;margin-bottom:8px}
+    .actions{display:flex;gap:8px;flex-wrap:wrap}
+    label{display:block;font-size:13px;color:#aaa;margin-bottom:4px}
+    .msg{padding:10px;border-radius:6px;margin-bottom:12px;display:none;font-size:14px}
+    .msg.ok{background:#064e3b;color:#a7f3d0;display:block}
+    .msg.err{background:#7f1d1d;color:#fca5a5;display:block}
+    .form-group{margin-bottom:14px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .check-row{display:flex;gap:16px;align-items:center;margin-bottom:12px}
+    .check-row label{margin:0;display:flex;gap:6px;align-items:center;color:#e0e0e0}
+    .check-row input{width:auto;margin:0}
+    hr{border:none;border-top:1px solid #1e1e2e;margin:20px 0}
+  </style>
 </head>
 <body>
 
-    <!-- LOGIN -->
-    <div id="loginSection" class="login-section">
-        <h2>🔐 Admin Login</h2>
-        <p style="color: var(--text2); margin-bottom: 20px;">Enter your admin key to manage tools</p>
-        <input type="password" id="adminKeyInput" placeholder="Enter Admin Key">
-        <button class="btn btn-primary" onclick="login()" style="width:100%">Login</button>
+<!-- LOGIN -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-box">
+    <h2>🔐 Admin Login</h2>
+    <p style="color:#888;margin-bottom:16px">Enter your admin key to manage tools</p>
+    <input type="password" id="keyInput" placeholder="Admin Key">
+    <button class="btn-p" onclick="doLogin()" style="width:100%">Login</button>
+    <div id="loginMsg" class="msg" style="margin-top:12px"></div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin" id="adminPanel">
+  <h1 style="margin-bottom:16px;color:#818cf8">⚙️ Admin Panel</h1>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('tools')">🔧 Tools</div>
+    <div class="tab" onclick="switchTab('ads')">📢 Ads</div>
+  </div>
+
+  <!-- ========== TOOLS TAB ========== -->
+  <div class="panel active" id="panel-tools">
+    <div id="toolMsg" class="msg"></div>
+    <div class="card">
+      <h3 id="formTitle">➕ Add New Tool</h3>
+      <input type="hidden" id="editId">
+      <div class="form-row">
+        <div class="form-group"><label>Tool Name *</label><input id="f_name"></div>
+        <div class="form-group"><label>Category *</label><input id="f_category" placeholder="AI Assistants"></div>
+      </div>
+      <div class="form-group"><label>Short Description *</label><input id="f_short_description" maxlength="300"></div>
+      <div class="form-group"><label>Full Description *</label><textarea id="f_description"></textarea></div>
+      <div class="form-group"><label>Long Description (for detail page)</label><textarea id="f_long_description" placeholder="Detailed review text..."></textarea></div>
+      <div class="form-row">
+        <div class="form-group"><label>Referral Link *</label><input id="f_referral_link"></div>
+        <div class="form-group"><label>Official Link</label><input id="f_official_link"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Video URL (YouTube)</label><input id="f_video_url" placeholder="https://youtube.com/watch?v=..."></div>
+        <div class="form-group"><label>Icon Emoji</label><input id="f_icon_emoji" value="🔧" style="width:60px"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Pricing</label><input id="f_pricing" value="Freemium"></div>
+        <div class="form-group"><label>Sort Order</label><input id="f_sort_order" type="number" value="10"></div>
+      </div>
+      <div class="check-row">
+        <label><input type="checkbox" id="f_is_featured"> Featured?</label>
+        <label><input type="checkbox" id="f_is_active" checked> Active?</label>
+      </div>
+      <div class="actions">
+        <button class="btn-p" onclick="saveTool()">💾 Save Tool</button>
+        <button class="btn-s" onclick="resetForm()">Cancel</button>
+      </div>
     </div>
+    <hr>
+    <h3 style="margin-bottom:12px">All Tools</h3>
+    <input id="searchTools" placeholder="Search tools..." oninput="renderTools()" style="margin-bottom:12px">
+    <div id="toolsList"></div>
+  </div>
 
-    <!-- ADMIN PANEL (hidden until login) -->
-    <div id="adminPanel" style="display:none;">
-        <h1>🛠 AI Tools Hub — Admin</h1>
-        <p class="subtitle">Add, edit, and manage your referral tools. Changes appear on the live site immediately.</p>
+  <!-- ========== ADS TAB ========== -->
+  <div class="panel" id="panel-ads">
+    <div id="adMsg" class="msg"></div>
+    <p style="color:#888;margin-bottom:16px">Paste your ad HTML (e.g., Google AdSense code, banner image code) into each slot. Leave empty to hide the slot.</p>
+    <div id="adsList"></div>
+  </div>
+</div>
 
-        <div id="statusMsg" class="status"></div>
+<script>
+let KEY = '';
+let tools = [];
+let ads = [];
 
-        <!-- ADD / EDIT TOOL FORM -->
-        <div class="form-section">
-            <h2 id="formTitle">➕ Add New Tool</h2>
-            <input type="hidden" id="editId">
-            <div class="form-grid">
-                <div>
-                    <label>Tool Name *</label>
-                    <input type="text" id="f_name" placeholder="e.g. ChatGPT Plus">
-                </div>
-                <div>
-                    <label>Category *</label>
-                    <input type="text" id="f_category" placeholder="e.g. AI Assistants" list="categories">
-                    <datalist id="categories">
-                        <option value="AI Assistants">
-                        <option value="AI Writing">
-                        <option value="AI Coding">
-                        <option value="AI Image Generation">
-                        <option value="AI Video">
-                        <option value="AI Audio">
-                        <option value="AI Audio & Video">
-                        <option value="AI Design">
-                        <option value="AI Productivity">
-                        <option value="AI Search">
-                        <option value="AI Automation">
-                        <option value="AI Analytics">
-                        <option value="AI Learning">
-                        <option value="Hosting & Deployment">
-                        <option value="Backend & Database">
-                        <option value="Security & Performance">
-                        <option value="Domains & Hosting">
-                    </datalist>
-                </div>
-                <div class="form-full">
-                    <label>Short Description (shown on card) *</label>
-                    <input type="text" id="f_short_description" placeholder="One-line description for the card" maxlength="300">
-                </div>
-                <div class="form-full">
-                    <label>Full Description *</label>
-                    <textarea id="f_description" placeholder="Detailed description of the tool"></textarea>
-                </div>
-                <div>
-                    <label>Referral Link *</label>
-                    <input type="url" id="f_referral_link" placeholder="https://tool.com/?ref=YOURID">
-                </div>
-                <div>
-                    <label>Official Link</label>
-                    <input type="url" id="f_official_link" placeholder="https://tool.com">
-                </div>
-                <div>
-                    <label>Icon Emoji</label>
-                    <input type="text" id="f_icon_emoji" placeholder="🤖" maxlength="10">
-                </div>
-                <div>
-                    <label>Pricing</label>
-                    <input type="text" id="f_pricing" placeholder="Free / From $20/mo">
-                </div>
-                <div>
-                    <label>Sort Order (lower = first)</label>
-                    <input type="number" id="f_sort_order" placeholder="0" value="0">
-                </div>
-                <div style="display:flex; gap: 20px; align-items: flex-end; padding-bottom: 12px;">
-                    <div class="checkbox-row">
-                        <input type="checkbox" id="f_is_featured">
-                        <label for="f_is_featured" style="margin:0">Featured?</label>
-                    </div>
-                    <div class="checkbox-row">
-                        <input type="checkbox" id="f_is_active" checked>
-                        <label for="f_is_active" style="margin:0">Active?</label>
-                    </div>
-                </div>
-            </div>
-            <div style="display: flex; gap: 10px;">
-                <button class="btn btn-primary" onclick="saveTool()">💾 Save Tool</button>
-                <button class="btn btn-small" onclick="resetForm()" style="background: var(--border); color: var(--text);">Cancel / Reset</button>
-            </div>
-        </div>
+// ----- LOGIN -----
+function doLogin() {
+  KEY = document.getElementById('keyInput').value.trim();
+  if (!KEY) return;
+  fetch('/.netlify/functions/get-tools')
+    .then(r => r.json())
+    .then(data => {
+      tools = data;
+      document.getElementById('loginWrap').style.display = 'none';
+      document.getElementById('adminPanel').style.display = 'block';
+      renderTools();
+      loadAds();
+    })
+    .catch(() => {
+      document.getElementById('loginMsg').className = 'msg err';
+      document.getElementById('loginMsg').textContent = 'Could not connect. Try again.';
+    });
+}
+document.getElementById('keyInput').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 
-        <!-- EXISTING TOOLS LIST -->
-        <div class="form-section">
-            <h2>📋 All Tools (<span id="toolCount">0</span>)</h2>
-            <input type="text" id="adminSearch" placeholder="Search tools..." oninput="filterAdminTools()">
-            <div id="toolsList" class="tools-list"></div>
-        </div>
-    </div>
+// ----- TABS -----
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('panel-' + name).classList.add('active');
+}
 
-    <script>
-        let adminKey = '';
-        let adminTools = [];
+// ----- TOOLS -----
+function renderTools() {
+  const q = (document.getElementById('searchTools').value || '').toLowerCase();
+  const filtered = tools.filter(t => t.name.toLowerCase().includes(q) || t.category.toLowerCase().includes(q));
+  const el = document.getElementById('toolsList');
+  if (filtered.length === 0) { el.innerHTML = '<p style="color:#888">No tools found.</p>'; return; }
+  el.innerHTML = filtered.map(t =>
+    '<div class="card"><h3>' + (t.icon_emoji||'🔧') + ' ' + t.name +
+    (t.is_featured ? ' ⭐' : '') + (!t.is_active ? ' <span style="color:#f87171">(Inactive)</span>' : '') +
+    '</h3><p>' + t.category + ' · ' + (t.pricing||'Freemium') + ' · Sort: ' + t.sort_order + '</p>' +
+    '<p style="color:#aaa;font-size:12px">' + (t.short_description||'').substring(0,100) + '</p>' +
+    '<p style="font-size:11px;color:#666;margin-bottom:6px">Referral: ' + (t.referral_link||'').substring(0,60) + '...</p>' +
+    '<div class="actions">' +
+    '<button class="btn-s" onclick="editTool(' + t.id + ')">✏️ Edit</button> ' +
+    '<button class="btn-d" onclick="deleteTool(' + t.id + ',\'' + t.name.replace(/'/g,"\\'") + '\')">🗑️ Delete</button>' +
+    '</div></div>'
+  ).join('');
+}
 
-        function login() {
-            adminKey = document.getElementById('adminKeyInput').value;
-            if (!adminKey) return;
-            document.getElementById('loginSection').style.display = 'none';
-            document.getElementById('adminPanel').style.display = 'block';
-            loadTools();
-        }
+function editTool(id) {
+  const t = tools.find(x => x.id === id);
+  if (!t) return;
+  document.getElementById('editId').value = t.id;
+  document.getElementById('formTitle').textContent = '✏️ Editing: ' + t.name;
+  document.getElementById('f_name').value = t.name || '';
+  document.getElementById('f_category').value = t.category || '';
+  document.getElementById('f_short_description').value = t.short_description || '';
+  document.getElementById('f_description').value = t.description || '';
+  document.getElementById('f_long_description').value = t.long_description || '';
+  document.getElementById('f_referral_link').value = t.referral_link || '';
+  document.getElementById('f_official_link').value = t.official_link || '';
+  document.getElementById('f_video_url').value = t.video_url || '';
+  document.getElementById('f_icon_emoji').value = t.icon_emoji || '🔧';
+  document.getElementById('f_pricing').value = t.pricing || '';
+  document.getElementById('f_sort_order').value = t.sort_order || 0;
+  document.getElementById('f_is_featured').checked = t.is_featured;
+  document.getElementById('f_is_active').checked = t.is_active;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 
-        // Press Enter to login
-        document.getElementById('adminKeyInput').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') login();
-        });
+function resetForm() {
+  document.getElementById('editId').value = '';
+  document.getElementById('formTitle').textContent = '➕ Add New Tool';
+  ['f_name','f_category','f_short_description','f_description','f_long_description','f_referral_link','f_official_link','f_video_url'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('f_icon_emoji').value = '🔧';
+  document.getElementById('f_pricing').value = 'Freemium';
+  document.getElementById('f_sort_order').value = '10';
+  document.getElementById('f_is_featured').checked = false;
+  document.getElementById('f_is_active').checked = true;
+}
 
-        function showStatus(msg, type) {
-            const el = document.getElementById('statusMsg');
-            el.textContent = msg;
-            el.className = `status ${type}`;
-            setTimeout(() => { el.className = 'status'; }, 4000);
-        }
+async function saveTool() {
+  const editId = document.getElementById('editId').value;
+  const body = {
+    name: document.getElementById('f_name').value,
+    category: document.getElementById('f_category').value,
+    short_description: document.getElementById('f_short_description').value,
+    description: document.getElementById('f_description').value,
+    long_description: document.getElementById('f_long_description').value,
+    referral_link: document.getElementById('f_referral_link').value,
+    official_link: document.getElementById('f_official_link').value,
+    video_url: document.getElementById('f_video_url').value,
+    icon_emoji: document.getElementById('f_icon_emoji').value,
+    pricing: document.getElementById('f_pricing').value,
+    sort_order: parseInt(document.getElementById('f_sort_order').value) || 10,
+    is_featured: document.getElementById('f_is_featured').checked,
+    is_active: document.getElementById('f_is_active').checked
+  };
+  if (!body.name || !body.category || !body.referral_link) {
+    showMsg('toolMsg', 'err', 'Name, Category and Referral Link are required.');
+    return;
+  }
+  const isEdit = !!editId;
+  if (isEdit) body.id = parseInt(editId);
+  try {
+    const res = await fetch('/.netlify/functions/' + (isEdit ? 'update-tool' : 'add-tool'), {
+      method: isEdit ? 'PUT' : 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-key': KEY },
+      body: JSON.stringify(body)
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Failed');
+    showMsg('toolMsg', 'ok', isEdit ? 'Tool updated!' : 'Tool added!');
+    // refresh list
+    const listRes = await fetch('/.netlify/functions/get-tools');
+    tools = await listRes.json();
+    renderTools();
+    resetForm();
+  } catch (err) {
+    showMsg('toolMsg', 'err', 'Error: ' + err.message);
+  }
+}
 
-        async function loadTools() {
-            try {
-                const res = await fetch('/.netlify/functions/get-tools');
-                adminTools = await res.json();
-                document.getElementById('toolCount').textContent = adminTools.length;
-                renderAdminTools(adminTools);
-            } catch (e) {
-                showStatus('Failed to load tools: ' + e.message, 'error');
-            }
-        }
+async function deleteTool(id, name) {
+  if (!confirm('Delete "' + name + '"?')) return;
+  try {
+    const res = await fetch('/.netlify/functions/delete-tool', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json', 'x-admin-key': KEY },
+      body: JSON.stringify({ id })
+    });
+    if (!res.ok) { const d = await res.json(); throw new Error(d.error || 'Failed'); }
+    showMsg('toolMsg', 'ok', '"' + name + '" deleted.');
+    tools = tools.filter(t => t.id !== id);
+    renderTools();
+  } catch (err) {
+    showMsg('toolMsg', 'err', 'Error: ' + err.message);
+  }
+}
 
-        function renderAdminTools(tools) {
-            const list = document.getElementById('toolsList');
-            list.innerHTML = tools.map(t => `
-                <div class="tool-row">
-                    <span style="font-size:1.3rem">${t.icon_emoji || '🔧'}</span>
-                    <span class="tool-name">${t.name} ${t.is_featured ? '⭐' : ''} ${!t.is_active ? '🚫' : ''}</span>
-                    <span class="tool-cat">${t.category}</span>
-                    <span class="tool-link">${t.referral_link}</span>
-                    <div class="actions">
-                        <button class="btn btn-edit" onclick='editTool(${JSON.stringify(t).replace(/'/g, "&#39;")})'>Edit</button>
-                        <button class="btn btn-danger" onclick="deleteTool(${t.id}, '${t.name.replace(/'/g, "\\'")}')">Delete</button>
-                    </div>
-                </div>
-            `).join('');
-        }
+// ----- ADS -----
+async function loadAds() {
+  try {
+    const res = await fetch('/.netlify/functions/get-ads');
+    ads = await res.json();
+    renderAds();
+  } catch (e) {
+    document.getElementById('adsList').innerHTML = '<p style="color:#f87171">Could not load ads.</p>';
+  }
+}
 
-        function filterAdminTools() {
-            const q = document.getElementById('adminSearch').value.toLowerCase();
-            const filtered = adminTools.filter(t => 
-                t.name.toLowerCase().includes(q) || t.category.toLowerCase().includes(q)
-            );
-            renderAdminTools(filtered);
-        }
+const slotLabels = {
+  'home_top': '🏠 Homepage — Top Banner',
+  'home_middle': '🏠 Homepage — Middle Banner',
+  'home_bottom': '🏠 Homepage — Bottom Banner',
+  'tool_detail_sidebar': '📄 Tool Detail Page — Sidebar'
+};
 
-        async function saveTool() {
-            const editId = document.getElementById('editId').value;
-            const tool = {
-                name: document.getElementById('f_name').value,
-                category: document.getElementById('f_category').value,
-                description: document.getElementById('f_description').value,
-                short_description: document.getElementById('f_short_description').value,
-                referral_link: document.getElementById('f_referral_link').value,
-                official_link: document.getElementById('f_official_link').value,
-                icon_emoji: document.getElementById('f_icon_emoji').value || '🔧',
-                pricing: document.getElementById('f_pricing').value || 'Freemium',
-                sort_order: parseInt(document.getElementById('f_sort_order').value) || 0,
-                is_featured: document.getElementById('f_is_featured').checked,
-                is_active: document.getElementById('f_is_active').checked,
-            };
+function renderAds() {
+  const el = document.getElementById('adsList');
+  el.innerHTML = ads.map(ad =>
+    '<div class="card">' +
+    '<h3>' + (slotLabels[ad.slot] || ad.slot) + '</h3>' +
+    '<p style="font-size:12px;color:#666">Slot ID: ' + ad.slot + ' · ' + (ad.is_active ? '🟢 Active' : '🔴 Inactive') + '</p>' +
+    '<div class="form-group" style="margin-top:10px"><label>Ad HTML Content</label>' +
+    '<textarea id="ad_content_' + ad.id + '" style="min-height:120px">' + (ad.ad_content || '').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</textarea></div>' +
+    '<div class="check-row"><label><input type="checkbox" id="ad_active_' + ad.id + '"' + (ad.is_active ? ' checked' : '') + '> Active</label></div>' +
+    '<button class="btn-p" onclick="saveAd(' + ad.id + ',\'' + ad.slot + '\')">💾 Save Ad</button>' +
+    '</div>'
+  ).join('');
+}
 
-            if (!tool.name || !tool.category || !tool.description || !tool.short_description || !tool.referral_link) {
-                showStatus('Please fill in all required fields (*)', 'error');
-                return;
-            }
+async function saveAd(id, slot) {
+  const content = document.getElementById('ad_content_' + id).value;
+  const is_active = document.getElementById('ad_active_' + id).checked;
+  try {
+    const res = await fetch('/.netlify/functions/save-ad', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-key': KEY },
+      body: JSON.stringify({ id, slot, ad_content: content, is_active })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Failed');
+    showMsg('adMsg', 'ok', 'Ad slot "' + slot + '" saved!');
+    loadAds();
+  } catch (err) {
+    showMsg('adMsg', 'err', 'Error: ' + err.message);
+  }
+}
 
-            try {
-                let res;
-                if (editId) {
-                    tool.id = parseInt(editId);
-                    res = await fetch('/.netlify/functions/update-tool', {
-                        method: 'PUT',
-                        headers: { 'Content-Type': 'application/json', 'x-admin-key': adminKey },
-                        body: JSON.stringify(tool),
-                    });
-                } else {
-                    res = await fetch('/.netlify/functions/add-tool', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json', 'x-admin-key': adminKey },
-                        body: JSON.stringify(tool),
-                    });
-                }
-
-                if (res.status === 401) {
-                    showStatus('Invalid admin key! Check your ADMIN_KEY.', 'error');
-                    return;
-                }
-
-                if (!res.ok) throw new Error(await res.text());
-
-                showStatus(editId ? '✅ Tool updated successfully!' : '✅ Tool added successfully!', 'success');
-                resetForm();
-                loadTools();
-            } catch (e) {
-                showStatus('Error saving tool: ' + e.message, 'error');
-            }
-        }
-
-        function editTool(tool) {
-            document.getElementById('editId').value = tool.id;
-            document.getElementById('f_name').value = tool.name;
-            document.getElementById('f_category').value = tool.category;
-            document.getElementById('f_description').value = tool.description;
-            document.getElementById('f_short_description').value = tool.short_description;
-            document.getElementById('f_referral_link').value = tool.referral_link;
-            document.getElementById('f_official_link').value = tool.official_link || '';
-            document.getElementById('f_icon_emoji').value = tool.icon_emoji || '';
-            document.getElementById('f_pricing').value = tool.pricing || '';
-            document.getElementById('f_sort_order').value = tool.sort_order || 0;
-            document.getElementById('f_is_featured').checked = tool.is_featured;
-            document.getElementById('f_is_active').checked = tool.is_active;
-            document.getElementById('formTitle').textContent = '✏️ Edit Tool: ' + tool.name;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        async function deleteTool(id, name) {
-            if (!confirm(`Are you sure you want to delete "${name}"?`)) return;
-            try {
-                const res = await fetch('/.netlify/functions/delete-tool', {
-                    method: 'DELETE',
-                    headers: { 'Content-Type': 'application/json', 'x-admin-key': adminKey },
-                    body: JSON.stringify({ id }),
-                });
-                if (res.status === 401) { showStatus('Invalid admin key!', 'error'); return; }
-                if (!res.ok) throw new Error(await res.text());
-                showStatus(`✅ "${name}" deleted.`, 'success');
-                loadTools();
-            } catch (e) {
-                showStatus('Error deleting: ' + e.message, 'error');
-            }
-        }
-
-        function resetForm() {
-            document.getElementById('editId').value = '';
-            document.getElementById('f_name').value = '';
-            document.getElementById('f_category').value = '';
-            document.getElementById('f_description').value = '';
-            document.getElementById('f_short_description').value = '';
-            document.getElementById('f_referral_link').value = '';
-            document.getElementById('f_official_link').value = '';
-            document.getElementById('f_icon_emoji').value = '';
-            document.getElementById('f_pricing').value = '';
-            document.getElementById('f_sort_order').value = '0';
-            document.getElementById('f_is_featured').checked = false;
-            document.getElementById('f_is_active').checked = true;
-            document.getElementById('formTitle').textContent = '➕ Add New Tool';
-        }
-    </script>
+function showMsg(elId, type, text) {
+  const el = document.getElementById(elId);
+  el.className = 'msg ' + (type === 'ok' ? 'ok' : 'err');
+  el.textContent = text;
+  setTimeout(() => { el.style.display = 'none'; el.className = 'msg'; }, 5000);
+}
+</script>
 </body>
 </html>
